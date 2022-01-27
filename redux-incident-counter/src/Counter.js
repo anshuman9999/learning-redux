@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { decrement, increment, set } from './actions';
 import { SetCounter } from './SetCounter';
 
@@ -7,9 +8,14 @@ export const Counter = () => {
   const count = useSelector((state) => state.count);
 
   const dispatch = useDispatch();
-  const resetHandler = () => dispatch(set(0));
-  const incrementHandler = () => dispatch(increment());
-  const decrementHandler = () => dispatch(decrement());
+  const actionCreators = bindActionCreators(
+    { increment, decrement, set },
+    dispatch
+  );
+
+  const resetHandler = () => actionCreators.set(0);
+  const incrementHandler = () => actionCreators.increment();
+  const decrementHandler = () => actionCreators.decrement();
 
   return (
     <main className="Counter">

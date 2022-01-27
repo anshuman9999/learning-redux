@@ -8,7 +8,6 @@ export const SetCounter = () => {
   const dispatch = useDispatch();
 
   useEffect(() => setCount(countFromStore), [countFromStore]);
-
   return (
     <section className="controls">
       <form
