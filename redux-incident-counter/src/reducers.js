@@ -1,7 +1,7 @@
 import { DECREMENT, INCREMENT, SET } from './actions';
 
 export const initialState = {
-  count: 120
+  count: 0
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
