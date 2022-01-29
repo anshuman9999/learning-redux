@@ -1,4 +1,4 @@
-import { ITEM_ADDED, ITEM_REMOVED } from './actions';
+import { ITEM_ADDED, ITEM_PRICE_UPDATED, ITEM_REMOVED } from './actions';
 
 let id = 1;
 
@@ -14,6 +14,17 @@ export const reducer = (state = initialItems, { type, payload }) => {
 
   if (type === ITEM_REMOVED) {
     return state.filter((item) => item.uuid !== payload.uuid);
+  }
+
+  if (type === ITEM_PRICE_UPDATED) {
+    const { uuid, price } = payload;
+    return state.map((item) => {
+      if (item.uuid === uuid) {
+        return { ...item, price: price };
+      }
+
+      return item;
+    });
   }
 
   return state;
